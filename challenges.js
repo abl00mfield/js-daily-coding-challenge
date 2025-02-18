@@ -36,7 +36,9 @@ addOne(-5) //=> -4
 -----------------------------------------------------------------------------*/
 // Your solution for 01-addOne here:
 
-
+function addOne(number) {
+  return number + 1;
+}
 
 
 
@@ -60,7 +62,13 @@ addTwoNumbers('Hello', 5) //=> NaN
 -----------------------------------------------------------------------------*/
 // Your solution for 02-addTwoNumbers here:
 
-
+function addTwoNumbers(num1, num2) {
+  if (typeof num1 === 'number' && typeof num2 === 'number') {
+    return num1 + num2;
+  } else {
+    return NaN;
+  }
+};
 
 
 
@@ -84,7 +92,17 @@ sumNumbers([]) //=> 0
 -----------------------------------------------------------------------------*/
 // Your solution for 03-sumNumbers here:
 
-
+function sumNumbers(nums) {
+  if (nums.length === 0) {
+    return 0;
+  } else {
+    let total = 0;
+    for (num of nums) {
+      total += num;
+    }
+    return total;
+  }
+}
 
 
 
