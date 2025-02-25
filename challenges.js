@@ -147,9 +147,9 @@ function computeRemainder(num1, num2) {
   if (num2 === 0) return Infinity;
   while (num1 >= num2) {
     num1 = num1 - num2;
-    if (num1 === 0) {
-      return 0;
-    }
+    // if (num1 === 0) {
+    //   return 0;
+    // }
   }
   return num1;
 }
@@ -232,7 +232,13 @@ removeEnds('SEB Rocks!') //=> "EB Rocks"
 removeEnds('a') //=> "" (empty string)
 -----------------------------------------------------------------------------*/
 // Your solution for 08-removeEnds here:
+function removeEnds(str) {
+  if (str.length < 3) {
+    return "";
+  }
 
+  return str.slice(1, str.length - 1);
+}
 /*-----------------------------------------------------------------------------
 Challenge: 09-charCount
 
@@ -270,6 +276,18 @@ charCount('Today is fantastic!')
 }
 -----------------------------------------------------------------------------*/
 // Your solution for 09-charCount here:
+function charCount(str) {
+  let objectChar = {};
+  objectChar = str.split("").reduce((acc, char) => {
+    if (acc[char]) {
+      acc[char] += 1;
+    } else {
+      acc[char] = 1;
+    }
+    return acc;
+  }, {});
+  return objectChar;
+}
 
 /*-----------------------------------------------------------------------------
 Challenge: 10-formatWithPadding
@@ -296,6 +314,16 @@ formatWithPadding(42, '*', 10) //=> "********42"
 formatWithPadding(1234, '*', 3) //=> "1234"
 -----------------------------------------------------------------------------*/
 // Your solution for 10-formatWithPadding here:
+function formatWithPadding(num, padding, amount) {
+  num = num.toString();
+  if (num.length >= amount) {
+    return num;
+  }
+  while (num.length < amount) {
+    num = padding + num;
+  }
+  return num;
+}
 
 /*-----------------------------------------------------------------------------
 Challenge: 11-isPalindrome
