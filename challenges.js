@@ -231,7 +231,7 @@ Examples:
 removeEnds('SEB Rocks!') //=> "EB Rocks"
 removeEnds('a') //=> "" (empty string)
 -----------------------------------------------------------------------------*/
-// Your solution for 08-removeEnds here:
+
 function removeEnds(str) {
   if (str.length < 3) {
     return "";
@@ -239,6 +239,7 @@ function removeEnds(str) {
 
   return str.slice(1, str.length - 1);
 }
+
 /*-----------------------------------------------------------------------------
 Challenge: 09-charCount
 
@@ -348,6 +349,19 @@ isPalindrome('A nut for a jar of tuna') //=> true
 isPalindrome('') //=> true
 -----------------------------------------------------------------------------*/
 // Your solution for 11-isPalindrome here:
+function isPalindrome(str) {
+  // if (!str) {
+  //   return true;
+  // }
+  str = str.replaceAll(" ", "").toLowerCase();
+  let newStr = "";
+
+  for (let i = str.length - 1; i >= 0; i--) {
+    newStr += str[i];
+  }
+
+  return newStr === str;
+}
 
 /*-----------------------------------------------------------------------------
 Challenge: 12-hammingDistance
@@ -374,6 +388,18 @@ hammingDistance('!!!!', '****') //=> 4
 hammingDistance('abc', 'ab') //=> NaN
 -----------------------------------------------------------------------------*/
 // Your solution for 12-hammingDistance here:
+function hammingDistance(str1, str2) {
+  if (str1.length != str2.length) {
+    return NaN;
+  }
+  let count = 0;
+  for (let i = 0; i < str1.length; i++) {
+    if (str1[i] != str2[i]) {
+      count++;
+    }
+  }
+  return count;
+}
 
 /*-----------------------------------------------------------------------------
 Challenge: 13-mumble
@@ -398,6 +424,15 @@ mumble('!A 2') //=> '!-AA-   -2222'
 -----------------------------------------------------------------------------*/
 // Your solution for 13-mumble here:
 
+function mumble(str) {
+  let newStr = "";
+  for (let i = 0; i < str.length; i++) {
+    newStr += str[i].repeat(i + 1);
+    newStr += "-";
+  }
+  return newStr.slice(0, -1);
+}
+
 /*-----------------------------------------------------------------------------
 Challenge: 14-fromPairs
 
@@ -421,6 +456,14 @@ fromPairs([ ['name', 'Sam"], ['age', 24], ['name', 'Sally'] ])
 //=> { name: "Sally", age: 24 }
 -----------------------------------------------------------------------------*/
 // Your solution for 14-fromPairs here:
+
+function fromPairs(arr) {
+  const myObj = {};
+  arr.forEach((innerArr) => {
+    myObj[innerArr[0]] = innerArr[1];
+  });
+  return myObj;
+}
 
 /*-----------------------------------------------------------------------------
 Challenge: 15-mergeObjects
@@ -448,6 +491,15 @@ mergeObjects({a: 1, b: 2, c: 3}, {d: 4}, {b: 22, d: 44})
 //=> {a: 1, b: 22, c: 3, d: 44}
 -----------------------------------------------------------------------------*/
 // Your solution for 15-mergeObjects here:
+
+function mergeObjects(firstObj, ...objs) {
+  for (const obj of objs) {
+    for (const property in obj) {
+      firstObj[property] = obj[property];
+    }
+  }
+  return firstObj;
+}
 
 /*-----------------------------------------------------------------------------
 Challenge: 16-findHighestPriced
@@ -486,6 +538,11 @@ findHighestPriced([
 //=> { sku: 'b2', price: 50 }
 -----------------------------------------------------------------------------*/
 // Your solution for 16-findHighestPriced here:
+function findHighestPriced(arr) {
+  return arr.reduce((highPriceObj, obj) =>
+    obj.price > highPriceObj.price ? obj : highPriceObj
+  );
+}
 
 /*-----------------------------------------------------------------------------
 Challenge: 17-mapArray
@@ -520,6 +577,14 @@ mapArray( ['rose', 'tulip', 'daisy'], function(f, i) {
 //=> ["1 - rose", "2 - tulip", "3 - daisy"]
 -----------------------------------------------------------------------------*/
 // Your solution for 17-mapArray here:
+
+function mapArray(arr, func) {
+  const result = [];
+  arr.forEach((element, index) => {
+    result.push(func(element, index));
+  });
+  return result;
+}
 
 /*-----------------------------------------------------------------------------
 Challenge: 18-reduceArray
@@ -568,6 +633,14 @@ reduceArray( ['Yes', 'No', 'Yes', 'Maybe'], function(acc, v) {
 -----------------------------------------------------------------------------*/
 // Your solution for 18-reduceArray here:
 
+function reduceArray(arr, func, initValue) {
+  let acc = initValue;
+  for (let i = 0; i < arr.length; i++) {
+    acc = func(acc, arr[i], i);
+  }
+  return acc;
+}
+
 /*-----------------------------------------------------------------------------
 Challenge: 19-flatten
 
@@ -592,6 +665,18 @@ flatten( [1, [2, [3, [4]]], 1, 'a', ['b', 'c']] );
 //=> [1, 2, 3, 4, 1, 'a', 'b', 'c']
 -----------------------------------------------------------------------------*/
 // Your solution for 19-flatten here:
+
+function flatten(arr) {
+  let result = [];
+  for (const element of arr) {
+    if (!Array.isArray(element)) {
+      result.push(element);
+    } else {
+      result = result.concat(flatten(element));
+    }
+  }
+  return result;
+}
 
 /*-----------------------------------------------------------------------------
 Challenge: 20-primeFactors
